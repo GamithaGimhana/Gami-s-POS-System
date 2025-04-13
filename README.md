@@ -1,4 +1,4 @@
-# Gamitha Gimhana Gami-s-POS-System
+# Gamitha Gimhana POS-System
 
 ## Assignment 06
 
