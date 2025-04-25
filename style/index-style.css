@@ -1,0 +1,212 @@
+/* Base styling */
+body {
+    background: #f5f5f7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Section styling */
+.sec {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+}
+
+/* Header and navigation */
+#header {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-title {
+    font-weight: 700;
+    color: #3498db;
+}
+
+.nav-items {
+    justify-content: flex-end;
+}
+
+/* Cards styling */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 50px 20px;
+    gap: 30px;
+}
+
+.my-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.my-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.my-card img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.my-card-title {
+    color: #3498db;
+    font-weight: 600;
+}
+
+.my-card-text span {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+.my-btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+    transition: all 0.3s;
+}
+
+.my-btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+/* Form styling */
+.my-form-control, .form-select {
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    transition: border-color 0.3s;
+}
+
+.my-form-control:focus, .form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+.my-form-label {
+    font-weight: 500;
+    color: #555;
+}
+
+/* Table styling */
+.my-table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.my-table thead {
+    background-color: #3498db;
+    color: white;
+}
+
+.my-table thead th {
+    font-weight: 500;
+    border: none;
+}
+
+.my-table tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+#order-table {
+    min-height: 200px;
+}
+
+/* Order section styling */
+#order-sec .my-row {
+    margin-bottom: 15px;
+}
+
+#order-sec span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #3498db;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.summery {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#btnOrderPurchase {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+}
+
+#btnOrderPurchase:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+#btnRemoveItem {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+#btnRemoveItem:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+
+/* Responsive behavior */
+@media (max-width: 992px) {
+    .cards-container {
+        padding: 30px 10px;
+    }
+
+    #order-sec .col-lg-4,
+    #order-sec .col-lg-5 {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .summery {
+        margin-top: 20px;
+    }
+
+    .sec {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .my-card {
+        width: 100% !important;
+    }
+
+    .my-table {
+        font-size: 14px;
+    }
+}
