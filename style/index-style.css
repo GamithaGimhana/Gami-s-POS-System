@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
+    /*overflow: hidden;*/
 }
 
 * {
@@ -111,6 +112,7 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
+    min-height: 200px;
 }
 
 .my-table thead {
@@ -127,9 +129,9 @@ body {
     background-color: rgba(52, 152, 219, 0.05);
 }
 
-#order-table {
-    min-height: 200px;
-}
+/*#order-table {*/
+/*    min-height: 200px;*/
+/*}*/
 
 /* Order section styling */
 #order-sec .my-row {
