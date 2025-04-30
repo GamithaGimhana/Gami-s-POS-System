@@ -1,6 +1,5 @@
-import {customers_db, items_db} from "../db/db.js";
+import {customers_db, items_db, order_db, order_detail_db} from "../db/db.js";
 import ItemModel from "../model/ItemModel.js";
-import CustomerModel from "../model/CustomerModel";
 
 function loadItems() {
 
