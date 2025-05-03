@@ -1,8 +1,6 @@
 import {customers_db, items_db, order_db, order_detail_db} from "../db/db.js";
 import CustomerModel from "../model/CustomerModel.js";
 
-let count = 0;
-
 function loadCustomers() {
 
     $('#customer-tbody').empty();
@@ -53,6 +51,11 @@ function clear() {
     $('#address').val('');
 }
 
+function updateCustomerCount() {
+    $('#customer-count').text(customers_db.length);
+}
+
+
 $('#customer_reset').on('click', function(){
     clear();
 });
@@ -75,13 +78,13 @@ $('#customer_save').on('click', function(){
         });
     } else {
         let customer_data = new CustomerModel(customer_id, fname, lname, contact, address);
-        count++;
 
         // push(), pop(), shift(), unshift()
         customers_db.push(customer_data);
         console.log(customers_db);
 
         loadCustomers();
+        updateCustomerCount();
 
         Swal.fire({
             title: "Success!",
@@ -127,6 +130,7 @@ $('#customer_update').on('click', function () {
     customers_db[index] = new CustomerModel(customer_id, fname, lname, contact, address);
 
     loadCustomers();
+    updateCustomerCount();
 
     Swal.fire({
         title: "Updated!",
@@ -171,6 +175,7 @@ $('#customer_delete').on('click', function () {
     customers_db.splice(index, 1);
 
     loadCustomers();
+    updateCustomerCount();
 
     Swal.fire({
         title: "Deleted!",
