@@ -48,6 +48,10 @@ function clear() {
     $('#qty').val('');
 }
 
+function updateItemCount() {
+    $('#item-count').text(items_db.length);
+}
+
 $('#item_reset').on('click', function(){
     clear();
 });
@@ -75,6 +79,7 @@ $('#item_save').on('click', function(){
         console.log(items_db);
 
         loadItems();
+        updateItemCount();
 
         Swal.fire({
             title: "Success!",
@@ -119,6 +124,7 @@ $('#item_update').on('click', function () {
     items_db[index] = new ItemModel(item_id, description, price, qty);
 
     loadItems();
+    updateItemCount();
 
     Swal.fire({
         title: "Updated!",
@@ -162,6 +168,7 @@ $('#customer_delete').on('click', function () {
     items_db.splice(index, 1);
 
     loadItems();
+    updateItemCount();
 
     Swal.fire({
         title: "Deleted!",
