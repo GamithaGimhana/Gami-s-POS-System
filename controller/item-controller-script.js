@@ -129,3 +129,45 @@ $('#item_update').on('click', function () {
     clear();
 });
 
+// delete item
+$('#customer_delete').on('click', function () {
+    let item_id = $('#item-id').val();
+    let description = $('#item-description').val();
+    let price = $('#price').val();
+    let qty = $('#qty').val();
+    console.log(`item_id: ${item_id}, description: ${description}, price: ${price}, qty: ${qty}`);
+
+    if (item_id === '' || description === '' || price === '' ||  qty === '') {
+        Swal.fire({
+            title: "Error",
+            text: "Fill the fields first",
+            icon: "error",
+        });
+        return;
+    }
+
+    // Find index of existing item by ID
+    let index = items_db.findIndex(item => item.item_id === item_id);
+
+    if (index === -1) {
+        Swal.fire({
+            title: "Error",
+            text: "Item not found to delete",
+            icon: "error"
+        });
+        return;
+    }
+
+    // Delete the existing customer
+    items_db.splice(index, 1);
+
+    loadItems();
+
+    Swal.fire({
+        title: "Deleted!",
+        text: "Item Deleted Successfully!",
+        icon: "success"
+    });
+
+    clear();
+});
