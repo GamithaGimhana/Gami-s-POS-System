@@ -42,26 +42,26 @@
         <section id="home-sec" class="sec">
             <div class="cards-container">
                 <div class="card my-card" style="width: 18rem;">
-                    <img src="assets/images/customers.jpg" class="Customer" alt="Customer">
+                    <img src="assets/images/customers.jpg" class="customer-img" alt="Customers">
                     <div class="card-body">
                         <h5 class="card-title my-card-title">Customers</h5>
-                        <p class="card-text my-card-text">All Customers : <span id="customer-size">0</span></p>
+                        <p class="card-text my-card-text">All Customers : <span id="customer-count">0</span></p>
                         <a href="#customer-sec" class="btn btn-primary my-btn-primary customer-btn">Customers Page -></a>
                     </div>
                 </div>
                 <div class="card my-card" style="width: 18rem;">
-                    <img src="assets/images/orders.jpg" class="Customer" alt="Customer">
+                    <img src="assets/images/orders.jpg" class="order-img" alt="Orders">
                     <div class="card-body">
                         <h5 class="card-title my-card-title">Orders</h5>
-                        <p class="card-text my-card-text">All Orders : <span id="order-size">0</span></p>
+                        <p class="card-text my-card-text">All Orders : <span id="order-count">0</span></p>
                         <a href="#order-sec" class="btn btn-primary my-btn-primary order-btn">Orders Page -></a>
                     </div>
                 </div>
                 <div class="card my-card" style="width: 18rem;">
-                    <img src="assets/images/items.jpg" class="Customer" alt="Customer">
+                    <img src="assets/images/items.jpg" class="item-img" alt="Items">
                     <div class="card-body">
                         <h5 class="card-title my-card-title">Items</h5>
-                        <p class="card-text my-card-text">All Items : <span id="item-size">0</span></p>
+                        <p class="card-text my-card-text">All Items : <span id="item-count">0</span></p>
                         <a href="#item-sec" class="btn btn-primary my-btn-primary item-btn">Items Page -></a>
                     </div>
                 </div>
@@ -93,11 +93,12 @@
                             <textarea class="form-control my-form-control" id="address" style="height: 100px"></textarea>
                         </div>
                         <button type="button" class="btn btn-primary my-btn-primary" id="customer_save" >Save</button>
-                        <button type="button" class="btn btn-primary my-btn-primary">Reset</button>
+                        <button type="button" class="btn btn-warning my-btn-warning" id="customer_update" >Update</button>
+                        <button type="button" class="btn btn-danger my-btn-danger" id="customer_delete" >Delete</button>
+                        <button type="button" class="btn btn-secondary my-btn-secondary"  id="customer_reset" >Reset</button>
                     </form>
                 </div>
             </div>
-
 
             <table class="table my-table">
                 <thead>
@@ -135,7 +136,9 @@
                             <input type="text" class="form-control my-form-control" id="qty">
                         </div>
                         <button type="button" class="btn btn-primary my-btn-primary" id="item_save" >Save</button>
-                        <button type="button" class="btn btn-primary my-btn-primary">Reset</button>
+                        <button type="button" class="btn btn-warning my-btn-warning" id="item_update" >Update</button>
+                        <button type="button" class="btn btn-danger my-btn-danger" id="item_delete" >Delete</button>
+                        <button type="button" class="btn btn-secondary my-btn-secondary" id="item_reset" >Reset</button>
                     </form>
                 </div>
             </div>
@@ -290,5 +293,7 @@
     <script src="assets/lib/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <script src="controller/controller-script.js"></script>
+    <script type="module" src="controller/customer-controller-script.js"></script>
+    <script type="module" src="controller/item-controller-script.js"></script>
 </body>
 </html>
