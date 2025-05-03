@@ -5,13 +5,14 @@ function loadItems() {
 
     $('#item-tbody').empty();
 
-    customers_db.map((item, index) => {
+    items_db.map((item) => {
+        let item_id = item.item_id;
         let description = item.description;
         let price = item.price;
         let qty = item.qty;
 
         let data = `<tr>
-            <td>${index + 1}</td>
+            <td>${item_id}</td>
             <td>${description}</td>
             <td>${price}</td>
             <td>${qty}</td>
@@ -23,19 +24,20 @@ function loadItems() {
 
 // save student
 $('#item_save').on('click', function(){
+    let item_id = $('#item-id').val();
     let description = $('#item-description').val();
     let price = $('#price').val();
     let qty = $('#qty').val();
-    console.log(`description: ${description}, price: ${price}, qty: ${qty}`);
+    console.log(`item_id: ${item_id}, description: ${description}, price: ${price}, qty: ${qty}`);
 
-    if (description === '' || price === '' ||  qty === '') {
+    if (item_id === '' || description === '' || price === '' ||  qty === '') {
         Swal.fire({
             title: "Error",
             text: "Fill the fields first",
             icon: "error",
         });
     } else {
-        let item_data = new ItemModel(description, price, qty);
+        let item_data = new ItemModel(item_id, description, price, qty);
 
         // push(), pop(), shift(), unshift()
         items_db.push(item_data);
@@ -54,6 +56,7 @@ $('#item_save').on('click', function(){
 });
 
 function clear() {
+    $('#item-id').val('');
     $('#item-description').val('');
     $('#price').val('');
     $('#qty').val('');
@@ -65,11 +68,17 @@ $('#item-tbody').on('click', 'tr', function () {
     let obj = items_db[idx];
     console.log(obj);
 
+    let item_id = obj.item_id;
     let description = obj.description;
     let price = obj.price;
     let qty = obj.qty;
 
+    $('#item-id').val(item_id);
     $('#item-description').val(description);
     $('#price').val(price);
     $('#qty').val(qty);
+});
+
+$('#item_reset').on('click', function(){
+    clear();
 });
