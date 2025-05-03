@@ -2,7 +2,6 @@ import {customers_db, items_db, order_db, order_detail_db} from "../db/db.js";
 import CustomerModel from "../model/CustomerModel.js";
 
 let count = 0;
-let selectedCustomerIndex = -1;
 
 function loadCustomers() {
 
@@ -52,7 +51,6 @@ function clear() {
     $('#lname').val('');
     $('#contact').val('');
     $('#address').val('');
-    selectedCustomerIndex = -1;
 }
 
 $('#customer_reset').on('click', function(){
@@ -133,6 +131,50 @@ $('#customer_update').on('click', function () {
     Swal.fire({
         title: "Updated!",
         text: "Customer Updated Successfully!",
+        icon: "success"
+    });
+
+    clear();
+});
+
+// delete customer
+$('#customer_delete').on('click', function () {
+    let customer_id = $('#cust-id').val();
+    let fname = $('#fname').val();
+    let lname = $('#lname').val();
+    let contact = $('#contact').val();
+    let address = $('#address').val();
+    console.log(`customer_id: ${customer_id}, fname: ${fname}, lname: ${lname}, contact: ${contact}, address: ${address}`);
+
+    if (customer_id === '' || fname === '' || lname === '' || contact === '' || address === '') {
+        Swal.fire({
+            title: "Error",
+            text: "Fill the fields first",
+            icon: "error",
+        });
+        return;
+    }
+
+    // Find index of existing customer by ID
+    let index = customers_db.findIndex(customer => customer.customer_id === customer_id);
+
+    if (index === -1) {
+        Swal.fire({
+            title: "Error",
+            text: "Customer not found to delete",
+            icon: "error"
+        });
+        return;
+    }
+
+    // Delete the existing customer
+    customers_db.splice(index, 1);
+
+    loadCustomers();
+
+    Swal.fire({
+        title: "Deleted!",
+        text: "Customer Deleted Successfully!",
         icon: "success"
     });
 
