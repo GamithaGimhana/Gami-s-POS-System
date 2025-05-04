@@ -1,4 +1,4 @@
-import {customers_db, items_db, order_db, order_detail_db} from "../db/db.js";
+import {customers_db, items_db, orders_db, order_details_db} from "../db/db.js";
 import CustomerModel from "../model/CustomerModel.js";
 
 function loadCustomers() {
@@ -76,6 +76,14 @@ $('#customer_save').on('click', function(){
             text: "Fill the fields first",
             icon: "error",
         });
+        return;
+    } else if (customers_db.some(customer => customer.customer_id === customer_id)) {
+        Swal.fire({
+            title: "Error",
+            text: "Customer ID already exists!",
+            icon: "error",
+        });
+        return;
     } else {
         let customer_data = new CustomerModel(customer_id, fname, lname, contact, address);
 
@@ -185,3 +193,14 @@ $('#customer_delete').on('click', function () {
 
     clear();
 });
+
+export function loadCustomerIDSelection() {
+    const $select = $('#order-customer-id');
+    $select.empty();
+    $select.append('<option selected>-- Select Customer ID --</option>');
+
+    customers_db.forEach(customer => {
+        $select.append(`<option value="${customer.customer_id}" >${customer.customer_id}</option>`);
+        console.log(customer.customer_id);
+    });
+}

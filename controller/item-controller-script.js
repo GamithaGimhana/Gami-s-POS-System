@@ -1,7 +1,5 @@
-import {customers_db, items_db, order_db, order_detail_db} from "../db/db.js";
+import {customers_db, items_db, orders_db, order_details_db} from "../db/db.js";
 import ItemModel from "../model/ItemModel.js";
-
-let count = 0;
 
 function loadItems() {
 
@@ -70,9 +68,18 @@ $('#item_save').on('click', function(){
             text: "Fill the fields first",
             icon: "error",
         });
+        return;
+
+    } else if (items_db.some(item => item.item_id === item_id)) {
+        Swal.fire({
+            title: "Error",
+            text: "item ID already exists!",
+            icon: "error",
+        });
+        return;
+
     } else {
         let item_data = new ItemModel(item_id, description, price, qty);
-        count++;
 
         // push(), pop(), shift(), unshift()
         items_db.push(item_data);
@@ -136,7 +143,7 @@ $('#item_update').on('click', function () {
 });
 
 // delete item
-$('#customer_delete').on('click', function () {
+$('#item_delete').on('click', function () {
     let item_id = $('#item-id').val();
     let description = $('#item-description').val();
     let price = $('#price').val();
@@ -164,7 +171,7 @@ $('#customer_delete').on('click', function () {
         return;
     }
 
-    // Delete the existing customer
+    // Delete the existing item
     items_db.splice(index, 1);
 
     loadItems();
@@ -178,3 +185,13 @@ $('#customer_delete').on('click', function () {
 
     clear();
 });
+
+export function loadItemIDSelection() {
+    const $select = $('#order-item-id');
+    $select.empty();
+    $select.append('<option selected>-- Select Item ID --</option>');
+
+    items_db.forEach(item => {
+        $select.append(`<option value="${item.item_id}">${item.item_id}</option>`);
+    });
+}
