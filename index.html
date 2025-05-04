@@ -15,7 +15,7 @@
 </head>
 <body>
     <header id="header">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand nav-title home-btn" href="#home-sec">Gami's POS System</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,19 +100,22 @@
                 </div>
             </div>
 
-            <table class="table my-table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Contact</th>
-                    <th scope="col">Address</th>
-                </tr>
-                </thead>
-                <tbody id="customer-tbody">
-                </tbody>
-            </table>
+            <div>
+                <table class="table my-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Address</th>
+                    </tr>
+                    </thead>
+                    <tbody id="customer-tbody">
+                    </tbody>
+                </table>
+            </div>
+
         </section>
 
         <section id="item-sec" class="sec">
@@ -278,7 +281,7 @@
             </div>
 
             <div class="col-lg-3">
-                <form  class="row my-row g-3 summery">
+                <form  class="row my-row g-3 summary">
                     <div class="col-lg-12" style="color: #3498db;font-weight: bold; font-size: 22px">
                         Total :
                         <label id="lblTotal">0</label>
