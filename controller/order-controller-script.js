@@ -23,4 +23,3 @@ function loadOrders() {
         $('#order-tbody').append(data);
     });
 }
-

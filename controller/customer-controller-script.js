@@ -1,8 +1,13 @@
 import {customers_db, items_db, orders_db, order_details_db} from "../db/db.js";
 import CustomerModel from "../model/CustomerModel.js";
 
-function loadCustomers() {
+let currentId = 1; // Starting ID
 
+$(document).ready(function () {
+    clear();
+});
+
+function loadCustomers() {
     $('#customer-tbody').empty();
 
     customers_db.map((customer) => {
@@ -44,7 +49,7 @@ $('#customer-tbody').on('click', 'tr', function () {
 });
 
 function clear() {
-    $('#cust-id').val('');
+    $('#cust-id').val(generateCustomerId());
     $('#fname').val('');
     $('#lname').val('');
     $('#contact').val('');
@@ -54,7 +59,6 @@ function clear() {
 function updateCustomerCount() {
     $('#customer-count').text(customers_db.length);
 }
-
 
 $('#customer_reset').on('click', function(){
     clear();
@@ -195,7 +199,8 @@ $('#customer_delete').on('click', function () {
 });
 
 export function loadCustomerIDSelection() {
-    const $select = $('#order-customer-id');
+    console.log("Customer loading called");
+    let $select = $('#order-customer-id');
     $select.empty();
     $select.append('<option selected>-- Select Customer ID --</option>');
 
@@ -203,4 +208,10 @@ export function loadCustomerIDSelection() {
         $select.append(`<option value="${customer.customer_id}" >${customer.customer_id}</option>`);
         console.log(customer.customer_id);
     });
+}
+
+function generateCustomerId() {
+    let customerId = 'C' + String(currentId).padStart(3, '0');
+    currentId++; // Increment the ID for next time
+    return customerId;
 }

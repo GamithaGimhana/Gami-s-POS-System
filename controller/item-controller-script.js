@@ -1,6 +1,10 @@
 import {customers_db, items_db, orders_db, order_details_db} from "../db/db.js";
 import ItemModel from "../model/ItemModel.js";
 
+$(document).ready(function () {
+    clear();
+});
+
 function loadItems() {
 
     $('#item-tbody').empty();
@@ -40,7 +44,7 @@ $('#item-tbody').on('click', 'tr', function () {
 });
 
 function clear() {
-    $('#item-id').val('');
+    $('#item-id').val(generateItemId());
     $('#item-description').val('');
     $('#price').val('');
     $('#qty').val('');
@@ -187,11 +191,17 @@ $('#item_delete').on('click', function () {
 });
 
 export function loadItemIDSelection() {
-    const $select = $('#order-item-id');
+    let $select = $('#order-item-id');
     $select.empty();
     $select.append('<option selected>-- Select Item ID --</option>');
 
     items_db.forEach(item => {
         $select.append(`<option value="${item.item_id}">${item.item_id}</option>`);
     });
+}
+
+function generateItemId() {
+    let itemId = 'I' + String(currentId).padStart(3, '0');
+    currentId++; // Increment the ID for next time
+    return itemId;
 }
