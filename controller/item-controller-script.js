@@ -1,6 +1,8 @@
 import {customers_db, items_db, orders_db, order_details_db} from "../db/db.js";
 import ItemModel from "../model/ItemModel.js";
 
+let currentId = 1; // Starting ID
+
 $(document).ready(function () {
     clear();
 });
@@ -91,6 +93,7 @@ $('#item_save').on('click', function(){
 
         loadItems();
         updateItemCount();
+        loadItemIDSelection();
 
         Swal.fire({
             title: "Success!",
@@ -136,6 +139,7 @@ $('#item_update').on('click', function () {
 
     loadItems();
     updateItemCount();
+    loadItemIDSelection();
 
     Swal.fire({
         title: "Updated!",
@@ -180,6 +184,7 @@ $('#item_delete').on('click', function () {
 
     loadItems();
     updateItemCount();
+    loadItemIDSelection();
 
     Swal.fire({
         title: "Deleted!",
@@ -193,7 +198,7 @@ $('#item_delete').on('click', function () {
 export function loadItemIDSelection() {
     let $select = $('#order-item-id');
     $select.empty();
-    $select.append('<option selected>-- Select Item ID --</option>');
+    $select.append('<option selected>Choose Item ID...</option>');
 
     items_db.forEach(item => {
         $select.append(`<option value="${item.item_id}">${item.item_id}</option>`);

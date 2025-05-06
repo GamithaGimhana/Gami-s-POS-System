@@ -97,6 +97,7 @@ $('#customer_save').on('click', function(){
 
         loadCustomers();
         updateCustomerCount();
+        loadCustomerIDSelection();
 
         Swal.fire({
             title: "Success!",
@@ -143,6 +144,7 @@ $('#customer_update').on('click', function () {
 
     loadCustomers();
     updateCustomerCount();
+    loadCustomerIDSelection();
 
     Swal.fire({
         title: "Updated!",
@@ -188,6 +190,7 @@ $('#customer_delete').on('click', function () {
 
     loadCustomers();
     updateCustomerCount();
+    loadCustomerIDSelection();
 
     Swal.fire({
         title: "Deleted!",
@@ -199,14 +202,12 @@ $('#customer_delete').on('click', function () {
 });
 
 export function loadCustomerIDSelection() {
-    console.log("Customer loading called");
     let $select = $('#order-customer-id');
     $select.empty();
-    $select.append('<option selected>-- Select Customer ID --</option>');
+    $select.append('<option selected>Choose Customer ID...</option>');
 
     customers_db.forEach(customer => {
-        $select.append(`<option value="${customer.customer_id}" >${customer.customer_id}</option>`);
-        console.log(customer.customer_id);
+        $select.append(`<option value="${customer.customer_id()}">${customer.customer_id}</option>`);
     });
 }
 

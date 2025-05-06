@@ -8,8 +8,6 @@ let cartItems = [];
 
 $(document).ready(function () {
     clear();
-    loadCustomerIDSelection();
-    loadItemIDSelection();
     loadOrderDate();
 
     $('#order-customer-id').on('change', function () {
