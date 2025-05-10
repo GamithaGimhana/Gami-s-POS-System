@@ -69,95 +69,112 @@
         </section>
 
         <section id="customer-sec" class="sec">
-            <div class="card my-card"   style="width: 18rem;">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="cust-id" class="form-label my-form-label">Id</label>
-                            <input type="text" class="form-control my-form-control" id="cust-id">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
+                        <form>
+                            <div class="card my-card"   style="width: 18rem;">
+                                <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="cust-id" class="form-label my-form-label">Id</label>
+                                            <input type="text" class="form-control my-form-control" id="cust-id">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="fname" class="form-label my-form-label">First Name</label>
+                                            <input type="text" class="form-control my-form-control" id="fname">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="lname" class="form-label my-form-label">Last Name</label>
+                                            <input type="text" class="form-control my-form-control" id="lname">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="contact" class="form-label my-form-label">Contact</label>
+                                            <input type="number" class="form-control my-form-control" id="contact">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="address" class="form-label my-form-label">Address</label>
+                                            <textarea class="form-control my-form-control" id="address" style="height: 100px"></textarea>
+                                        </div>
+                                        <button type="button" class="btn btn-primary my-btn-primary" id="customer_save" >Save</button>
+                                        <button type="button" class="btn btn-warning my-btn-warning" id="customer_update" >Update</button>
+                                        <button type="button" class="btn btn-danger my-btn-danger" id="customer_delete" >Delete</button>
+                                        <button type="button" class="btn btn-secondary my-btn-secondary"  id="customer_reset" >Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-8">
+                        <div class="card m-5 p-3" style="width: 50rem;">
+                            <table class="table my-table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Contact</th>
+                                    <th scope="col">Address</th>
+                                </tr>
+                                </thead>
+                                <tbody id="customer-tbody">
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="mb-3">
-                            <label for="fname" class="form-label my-form-label">First Name</label>
-                            <input type="text" class="form-control my-form-control" id="fname">
-                        </div>
-                        <div class="mb-3">
-                            <label for="lname" class="form-label my-form-label">Last Name</label>
-                            <input type="text" class="form-control my-form-control" id="lname">
-                        </div>
-                        <div class="mb-3">
-                            <label for="contact" class="form-label my-form-label">Contact</label>
-                            <input type="number" class="form-control my-form-control" id="contact">
-                        </div>
-                        <div class="mb-3">
-                            <label for="address" class="form-label my-form-label">Address</label>
-                            <textarea class="form-control my-form-control" id="address" style="height: 100px"></textarea>
-                        </div>
-                        <button type="button" class="btn btn-primary my-btn-primary" id="customer_save" >Save</button>
-                        <button type="button" class="btn btn-warning my-btn-warning" id="customer_update" >Update</button>
-                        <button type="button" class="btn btn-danger my-btn-danger" id="customer_delete" >Delete</button>
-                        <button type="button" class="btn btn-secondary my-btn-secondary"  id="customer_reset" >Reset</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-
-            <div>
-                <table class="table my-table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">Address</th>
-                    </tr>
-                    </thead>
-                    <tbody id="customer-tbody">
-                    </tbody>
-                </table>
-            </div>
-
         </section>
 
         <section id="item-sec" class="sec">
-            <div class="card my-card"   style="width: 18rem;">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="item-id" class="form-label my-form-label">Id</label>
-                            <input type="text" class="form-control my-form-control" id="item-id">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
+                        <form>
+                            <div class="card my-card"   style="width: 18rem;">
+                                <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="item-id" class="form-label my-form-label">Id</label>
+                                            <input type="text" class="form-control my-form-control" id="item-id">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="item-description" class="form-label my-form-label">Description</label>
+                                            <input type="text" class="form-control my-form-control" id="item-description">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="price" class="form-label my-form-label">Price</label>
+                                            <input type="number" class="form-control my-form-control" id="price">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="qty" class="form-label my-form-label">Qty</label>
+                                            <input type="number" class="form-control my-form-control" id="qty">
+                                        </div>
+                                        <button type="button" class="btn btn-primary my-btn-primary" id="item_save" >Save</button>
+                                        <button type="button" class="btn btn-warning my-btn-warning" id="item_update" >Update</button>
+                                        <button type="button" class="btn btn-danger my-btn-danger" id="item_delete" >Delete</button>
+                                        <button type="button" class="btn btn-secondary my-btn-secondary" id="item_reset" >Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-8">
+                        <div class="card m-5 p-3" style="width: 50rem;">
+                            <table class="table my-table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody id="item-tbody">
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="mb-3">
-                            <label for="item-description" class="form-label my-form-label">Description</label>
-                            <input type="text" class="form-control my-form-control" id="item-description">
-                        </div>
-                        <div class="mb-3">
-                            <label for="price" class="form-label my-form-label">Price</label>
-                            <input type="number" class="form-control my-form-control" id="price">
-                        </div>
-                        <div class="mb-3">
-                            <label for="qty" class="form-label my-form-label">Qty</label>
-                            <input type="number" class="form-control my-form-control" id="qty">
-                        </div>
-                        <button type="button" class="btn btn-primary my-btn-primary" id="item_save" >Save</button>
-                        <button type="button" class="btn btn-warning my-btn-warning" id="item_update" >Update</button>
-                        <button type="button" class="btn btn-danger my-btn-danger" id="item_delete" >Delete</button>
-                        <button type="button" class="btn btn-secondary my-btn-secondary" id="item_reset" >Reset</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-
-            <table class="table my-table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                </tr>
-                </thead>
-                <tbody id="item-tbody">
-                </tbody>
-            </table>
         </section>
 
         <section id="order-sec" class="sec">
@@ -170,17 +187,19 @@
                 </div>
             </div>
 
-            <table class="table my-table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Order Date</th>
-                    <th scope="col">Customer Id</th>
-                </tr>
-                </thead>
-                <tbody id="order-tbody">
-                </tbody>
-            </table>
+            <div class="card">
+                <table class="table my-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Customer Id</th>
+                    </tr>
+                    </thead>
+                    <tbody id="order-tbody">
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <section id="place-order-sec" class="sec">
