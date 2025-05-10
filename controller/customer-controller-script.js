@@ -61,7 +61,10 @@ function updateCustomerCount() {
 }
 
 $('#customer_reset').on('click', function(){
-    clear();
+    $('#fname').val('');
+    $('#lname').val('');
+    $('#contact').val('');
+    $('#address').val('');
 });
 
 // save customer

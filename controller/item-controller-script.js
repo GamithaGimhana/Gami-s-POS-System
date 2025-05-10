@@ -8,7 +8,6 @@ $(document).ready(function () {
 });
 
 function loadItems() {
-
     $('#item-tbody').empty();
 
     items_db.map((item) => {
@@ -57,7 +56,9 @@ function updateItemCount() {
 }
 
 $('#item_reset').on('click', function(){
-    clear();
+    $('#item-description').val('');
+    $('#price').val('');
+    $('#qty').val('');
 });
 
 // save student
@@ -101,6 +102,7 @@ $('#item_save').on('click', function(){
             icon: "success"
         });
         clear();
+        // generateItemId();
     }
 
 });
@@ -148,6 +150,7 @@ $('#item_update').on('click', function () {
     });
 
     clear();
+    // generateItemId();
 });
 
 // delete item
@@ -193,6 +196,7 @@ $('#item_delete').on('click', function () {
     });
 
     clear();
+    // generateItemId();
 });
 
 export function loadItemIDSelection() {
@@ -208,5 +212,6 @@ export function loadItemIDSelection() {
 function generateItemId() {
     let itemId = 'I' + String(currentId).padStart(3, '0');
     currentId++; // Increment the ID for next time
+    // $('#item-id').val(itemId);
     return itemId;
 }
