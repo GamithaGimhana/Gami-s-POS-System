@@ -8,6 +8,8 @@ let cartItems = [];
 
 $(document).ready(function () {
     clear();
+    loadCustomerIDSelection();
+    loadItemIDSelection();
     loadOrderDate();
 
     $('#order-customer-id').on('change', function () {
@@ -127,4 +129,57 @@ function updateCartSummary() {
     let total = cartItems.reduce((sum, item) => sum + item.total, 0);
     $('#lblTotal').text(total.toFixed(2));
     $('#lblSubTotal').text(total.toFixed(2));
+}
+
+$('#btnAddToCartItem').on('click', function () {
+    const itemId = $('#order-item-id').val();
+    const itemName = $('#order-item-description').val();
+    const price = parseFloat($('#order-item-price').val());
+    const qtyOnHand = parseInt($('#order-item-qty').val());
+    const orderQty = parseInt($('#order-qty').val());
+
+    if (!itemId || !itemName || isNaN(price) || isNaN(orderQty)) {
+        Swal.fire("Error", "Please fill item and order quantity", "error");
+        return;
+    }
+
+    if (orderQty > qtyOnHand) {
+        Swal.fire("Error", "Not enough stock", "error");
+        return;
+    }
+
+    const existingIndex = cartItems.findIndex(item => item.itemId === itemId);
+
+    if (existingIndex !== -1) {
+        // Update existing item quantity and total
+        cartItems[existingIndex].qty += orderQty;
+        cartItems[existingIndex].total = cartItems[existingIndex].qty * price;
+    } else {
+        // Add new item
+        cartItems.push({
+            itemId: itemId,
+            itemName: itemName,
+            price: price,
+            qty: orderQty,
+            total: price * orderQty
+        });
+    }
+
+    renderCartTable();
+    updateCartSummary();
+});
+
+function renderCartTable() {
+    $('#place-order-tbody').empty();
+    cartItems.forEach((item, index) => {
+        $('#place-order-tbody').append(`
+            <tr>
+                <td>${index + 1}</td>
+                <td>${item.itemName}</td>
+                <td>${item.price.toFixed(2)}</td>
+                <td>${item.qty}</td>
+                <td>${item.total.toFixed(2)}</td>
+            </tr>
+        `);
+    });
 }
