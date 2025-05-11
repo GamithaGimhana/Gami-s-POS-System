@@ -1,6 +1,7 @@
 import {customers_db, items_db, orders_db, order_details_db} from "../db/db.js";
 import {loadCustomerIDSelection} from "./customer-controller-script.js";
 import {loadItemIDSelection} from "./item-controller-script.js";
+import {loadOrders} from "./order-controller-script.js";
 import OrderModel from "../model/OrderModel.js";
 
 let currentId = 1; // Starting ID
@@ -13,8 +14,8 @@ $(document).ready(function () {
     loadOrderDate();
 
     $('#order-customer-id').on('change', function () {
-        const selectedId = $(this).val();
-        const customer = customers_db.find(c => c.customer_id === selectedId);
+        const selectedCustomer = $(this).val();
+        const customer = customers_db.find(c => c.customer_id === selectedCustomer);
 
         if (customer) {
             $('#order-customer-name').val(customer.fname + " " + customer.lname);
@@ -107,7 +108,7 @@ $('#btnOrderPurchase').on('click', function () {
         return;
     }
 
-    let order = new OrderModel(orderId, customerId, orderDate, total);
+    let order = new OrderModel(orderId, orderDate, customerId, total);
     orders_db.push(order);
 
     cartItems.forEach(item => {
@@ -120,6 +121,7 @@ $('#btnOrderPurchase').on('click', function () {
     });
 
     Swal.fire("Success", "Order Placed Successfully", "success");
+    loadOrders();
     updateOrderCount();
     cartItems = [];
     clear();

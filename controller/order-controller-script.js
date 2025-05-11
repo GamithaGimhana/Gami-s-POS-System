@@ -5,7 +5,7 @@ $(document).ready(function () {
     loadOrders();
 });
 
-function loadOrders() {
+export function loadOrders() {
 
     $('#order-tbody').empty();
 
@@ -13,11 +13,13 @@ function loadOrders() {
         let order_id = order.order_id;
         let order_date = order.order_date;
         let customer_id = order.customer_id;
+        let total = order.total;
 
         let data = `<tr>
             <td>${order_id}</td>
             <td>${order_date}</td>
             <td>${customer_id}</td>
+            <td>${total}</td>
             </tr>`;
 
         $('#order-tbody').append(data);
