@@ -210,7 +210,7 @@ export function loadCustomerIDSelection() {
     $select.append('<option selected>Choose Customer ID...</option>');
 
     customers_db.forEach(customer => {
-        $select.append(`<option value="${customer.customer_id()}">${customer.customer_id}</option>`);
+        $select.append(`<option value="${customer.customer_id}">${customer.customer_id}</option>`);
     });
 }
 
