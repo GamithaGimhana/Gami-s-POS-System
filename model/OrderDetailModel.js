@@ -1,10 +1,10 @@
 export default class OrderDetailModel {
 
-    constructor(order_id, item_id, item_price, item_qty) {
+    constructor(order_id, item_id, item_price, order_qty) {
         this._order_id = order_id;
         this._item_id = item_id;
         this._item_price = item_price;
-        this._item_qty = item_qty;
+        this._order_qty = order_qty;
     }
 
     get order_id() {
@@ -31,11 +31,11 @@ export default class OrderDetailModel {
         this._item_price = value;
     }
 
-    get item_qty() {
-        return this._item_qty;
+    get order_qty() {
+        return this._order_qty;
     }
 
-    set item_qty(value) {
-        this._item_qty = value;
+    set order_qty(value) {
+        this._order_qty = value;
     }
 }

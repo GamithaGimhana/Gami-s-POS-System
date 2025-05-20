@@ -7,7 +7,7 @@ $(document).ready(function () {
     clear();
 });
 
-function loadItems() {
+export function loadItems() {
     $('#item-tbody').empty();
 
     items_db.map((item) => {
@@ -55,10 +55,55 @@ function updateItemCount() {
     $('#item-count').text(items_db.length);
 }
 
+$('#search-item').on('submit', function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    let keyword = $(this).find('input[type="search"]').val().trim().toLowerCase();
+
+    $('#item-tbody').empty();
+
+    if (keyword === '') {
+        loadItems(); // Show all items if search is empty
+        return;
+    }
+
+    let filteredItems = items_db.filter(item =>
+        item.item_id.toLowerCase().includes(keyword) ||
+        item.description.toLowerCase().includes(keyword) ||
+        item.price.toString().toLowerCase().includes(keyword) ||
+        item.qty.toString().toLowerCase().includes(keyword)
+    );
+
+
+    if (filteredItems.length === 0) {
+        $('#item-tbody').append(`<tr><td colspan="4" class="text-center">No matching records found</td></tr>`);
+        return;
+    }
+
+    filteredItems.forEach((item) => {
+        let row = `<tr>
+            <td>${item.item_id}</td>
+            <td>${item.description}</td>
+            <td>${item.price}</td>
+            <td>${item.qty}</td>
+        </tr>`;
+        $('#item-tbody').append(row);
+    });
+});
+
+// $('#search-item input[type="search"]').on('input', function () {
+//     let keyword = $(this).val().trim();
+//
+//     if (keyword === '') {
+//         loadItems(); // Reload full list when search box is cleared
+//     }
+// });
+
 $('#item_reset').on('click', function(){
-    $('#item-description').val('');
-    $('#price').val('');
-    $('#qty').val('');
+    // $('#item-description').val('');
+    // $('#price').val('');
+    // $('#qty').val('');
+    clear();
 });
 
 // save student
@@ -92,6 +137,8 @@ $('#item_save').on('click', function(){
         items_db.push(item_data);
         console.log(items_db);
 
+        currentId++; // Increment the ID for next time
+
         loadItems();
         updateItemCount();
         loadItemIDSelection();
@@ -102,7 +149,6 @@ $('#item_save').on('click', function(){
             icon: "success"
         });
         clear();
-        // generateItemId();
     }
 
 });
@@ -150,7 +196,6 @@ $('#item_update').on('click', function () {
     });
 
     clear();
-    // generateItemId();
 });
 
 // delete item
@@ -196,7 +241,6 @@ $('#item_delete').on('click', function () {
     });
 
     clear();
-    // generateItemId();
 });
 
 export function loadItemIDSelection() {
@@ -211,7 +255,6 @@ export function loadItemIDSelection() {
 
 function generateItemId() {
     let itemId = 'I' + String(currentId).padStart(3, '0');
-    currentId++; // Increment the ID for next time
-    // $('#item-id').val(itemId);
+    // currentId++; // Increment the ID for next time
     return itemId;
 }

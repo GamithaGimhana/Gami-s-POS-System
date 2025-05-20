@@ -60,11 +60,51 @@ function updateCustomerCount() {
     $('#customer-count').text(customers_db.length);
 }
 
+$('#search-customer').on('submit', function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    let keyword = $(this).find('input[type="search"]').val().trim().toLowerCase();
+
+    $('#customer-tbody').empty();
+
+    if (keyword === '') {
+        loadCustomers(); // Show all customers if search is empty
+        return;
+    }
+
+    let filteredCustomers = customers_db.filter(customer =>
+        customer.customer_id.toLowerCase().includes(keyword) ||
+        customer.fname.toLowerCase().includes(keyword) ||
+        customer.lname.toLowerCase().includes(keyword) ||
+        customer.contact.toString().toLowerCase().includes(keyword) ||
+        customer.address.toLowerCase().includes(keyword)
+    );
+
+    if (filteredCustomers.length === 0) {
+        $('#customer-tbody').append(`<tr><td colspan="5" class="text-center">No matching records found</td></tr>`);
+        return;
+    }
+
+    filteredCustomers.forEach((customer) => {
+        let row = `<tr>
+            <td>${customer.customer_id}</td>
+            <td>${customer.fname}</td>
+            <td>${customer.lname}</td>
+            <td>${customer.contact}</td>
+            <td>${customer.address}</td>
+        </tr>`;
+        $('#customer-tbody').append(row);
+    });
+});
+
 $('#customer_reset').on('click', function(){
-    $('#fname').val('');
-    $('#lname').val('');
-    $('#contact').val('');
-    $('#address').val('');
+    // currentId--; // Decrement the ID for next time
+    // $('#cust-id').val('C' + String(currentId).padStart(3, '0'));
+    // $('#fname').val('');
+    // $('#lname').val('');
+    // $('#contact').val('');
+    // $('#address').val('');
+    clear();
 });
 
 // save customer
@@ -97,6 +137,8 @@ $('#customer_save').on('click', function(){
         // push(), pop(), shift(), unshift()
         customers_db.push(customer_data);
         console.log(customers_db);
+
+        currentId++; // Increment the ID for next time
 
         loadCustomers();
         updateCustomerCount();
@@ -216,6 +258,6 @@ export function loadCustomerIDSelection() {
 
 function generateCustomerId() {
     let customerId = 'C' + String(currentId).padStart(3, '0');
-    currentId++; // Increment the ID for next time
+    // currentId++; // Increment the ID for next time
     return customerId;
 }
