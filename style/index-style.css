@@ -1,36 +1,69 @@
 body {
     background: #f8f9fa;
     line-height: 1.6;
+    background-image: url("../assets/images/background.webp");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: #333;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Section styling */
 .sec {
     width: 100%;
-    min-height: 100vh;
-    padding: 25px;
+    min-height: 85vh;
+    padding: 30px;
     position: relative;
     display: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease-in-out;
+    margin-bottom: 20px;
 }
 
 #home-sec {
     display: block;
 }
 
+#place-order-sec {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
 /* Header and navigation */
 #header {
     background: #ffffff;
+    backdrop-filter: blur(10px);
     border-radius: 12px;
-    padding: 15px 25px;
-    margin: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 18px 30px;
+    margin: 15px auto;
+    max-width: 1400px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
     font-weight: 600;
+    top: 15px;
+    z-index: 1000;
+}
+
+.nav-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+    transition: all 0.5s;
+}
+
+.nav-title:hover, .nav-title:focus {
+    transform: scale(1.03);
 }
 
 .nav-items {
@@ -39,36 +72,56 @@ body {
 
 .nav-link {
     border-radius: 8px;
-    transition: all 0.3s;
+    padding: 10px 18px;
+    margin: 0 5px;
+    color: #555;
+    transition: all 0.5s;
 }
 
 .nav-link:hover, .nav-link:focus {
     background-color: #f0f4ff;
+    color: blue;
+    transform: scale(1.03);
 }
 
 /* Cards styling */
 .cards-container {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    padding: 40px 15px;
+    gap: 35px;
+    padding: 50px 20px;
+    flex-wrap: wrap;
 }
 
 .my-card {
+    backdrop-filter: blur(10px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 320px !important;
+    transition: all 0.5s;
+    width: 340px !important;
+    padding: 20px;
 }
 
 .my-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.03);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .my-card img {
-    height: 180px;
+    height: 250px;
     object-fit: cover;
     width: 100%;
+}
+
+.my-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.my-card-text {
+    font-size: 1rem;
+    color: #666;
 }
 
 .my-card-text span {
@@ -76,60 +129,177 @@ body {
     color: #38b000;
 }
 
+/* Button styling */
+.my-btn-primary {
+    transition: all 0.5s;
+    margin: 5px;
+    margin-left: 0;
+}
+
+.my-btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+}
+
+.my-btn-warning {
+    transition: all 0.5s;
+    margin: 5px;
+}
+
+.my-btn-warning:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 190, 11, 0.3);
+}
+
+.my-btn-danger {
+    transition: all 0.5s;
+    margin: 5px;
+}
+
+.my-btn-danger:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 90, 95, 0.3);
+}
+
+.my-btn-secondary {
+    transition: all 0.5s;
+    margin: 5px;
+}
+
+.my-btn-secondary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(141, 153, 174, 0.3);
+}
+
+/* Form styling */
+.my-form-label {
+    font-weight: 500;
+    color: #555;
+}
+
 /* Table styling */
 .my-table {
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
-/* Customer & Item Section */
-#customer-sec .my-card, #item-sec .my-card {
+.my-table th {
+    font-size: 0.9rem;
+}
+
+#cart-table {
+    margin: 0 auto;
+    width: 100%;
+}
+
+#customer-sec, #item-sec, #order-sec, #place-order-sec {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    max-width: 1400px;
+    margin: 15px auto;
+    padding: 30px;
+}
+
+#customer-sec .my-card, #item-sec .my-card , #order-sec .my-card , #place-order-sec .my-card {
     width: 100% !important;
-    max-width: 500px;
+    max-width: 450px;
     margin: 0 auto 30px;
 }
 
-/* Order Section */
-#order-sec span, #place-order-sec span {
-    font-size: 20px;
-    font-weight: 600;
-    color: #4361ee;
+/* Search bars */
+.search-bars {
+    margin-left: 30px;
+}
+
+#search-order{
+    margin-bottom: 30px;
+    /*margin-right: 50%;*/
+}
+
+.search-bars .btn {
+    background-color: #3a86ff;
+    color: white;
+    border: none;
+}
+
+.search-bars .btn:hover {
+    background-color: #2667cc;
+}
+
+/* Order and Place Order sections */
+#invoice-details, #item-select {
+    margin-left: 10%;
+}
+
+#invoice-details span, #item-select span{
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #3a86ff;
     margin-bottom: 15px;
-    display: block;
+    border-bottom: 2px solid #e1e5eb;
+    padding-bottom: 10px;
 }
 
 /* Summary Section */
-.summary {
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+#lblTotal, #lblSubTotal {
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 #btnOrderPurchase {
     width: 100%;
     padding: 12px;
     background-color: #38b000;
+    font-size: 1.1rem;
     border: none;
-    transition: background-color 0.3s;
+    transition: all 0.5s;
 }
 
 #btnOrderPurchase:hover {
     background-color: #2d9300;
+    transform: scale(1.05);
+}
+
+#btnAddToCartItem {
+    font-weight: 600;
+    transition: all 0.3s;
 }
 
 #btnRemoveItem {
     background-color: #ef476f;
     border: none;
-    transition: background-color 0.3s;
+    font-weight: 600;
+    transition: all 0.3s;
 }
 
 #btnRemoveItem:hover {
     background-color: #d63963;
+    transform: scale(1.05);
 }
 
+/* Selected row in place order */
 #place-order-tbody tr.selected {
     background-color: #e8f0fe;
+    border-left: 4px solid #3a86ff;
+}
+
+/* Media Queries */
+/* Desktop (1440px) */
+@media (max-width: 1440px) {
+    .my-card {
+        width: 320px !important;
+    }
+
+    .sec {
+        padding: 25px;
+    }
+
+    #header {
+        padding: 15px 25px;
+    }
 }
 
 /* Laptop (1366px and below) */
@@ -144,6 +314,10 @@ body {
 
     .sec {
         padding: 20px;
+    }
+
+    .my-table {
+        width: 50%;
     }
 }
 
