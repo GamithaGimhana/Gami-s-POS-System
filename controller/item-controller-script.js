@@ -230,6 +230,11 @@ $('#item_delete').on('click', function () {
     // Delete the existing item
     items_db.splice(index, 1);
 
+    // Decrease the currentId if greater than 1
+    if (currentId > 1) {
+        currentId--;
+    }
+
     loadItems();
     updateItemCount();
     loadItemIDSelection();

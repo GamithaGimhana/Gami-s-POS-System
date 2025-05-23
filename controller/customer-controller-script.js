@@ -108,51 +108,86 @@ $('#customer_reset').on('click', function(){
 });
 
 // save customer
-$('#customer_save').on('click', function(){
-    // let fname = document.getElementById('fname').value;
-    let customer_id = $('#cust-id').val();
-    let fname = $('#fname').val();
-    let lname = $('#lname').val();
-    let contact = $('#contact').val();
-    let address = $('#address').val();
+$('#customer_save').on('click', function () {
+    let customer_id = $('#cust-id').val().trim();
+    let fname = $('#fname').val().trim();
+    let lname = $('#lname').val().trim();
+    let contact = $('#contact').val().trim();
+    let address = $('#address').val().trim();
+
     console.log(`customer_id: ${customer_id}, fname: ${fname}, lname: ${lname}, contact: ${contact}, address: ${address}`);
 
-    if (customer_id === '' || fname === '' || lname === '' || contact === '' || address === '') {
+    // Reset styles
+    $('#fname, #lname, #contact').css('border-color', '');
+
+    // Validate first name
+    if (!/^[A-Za-z\s]{3,30}$/.test(fname)) {
+        $('#fname').css('border-color', 'red');
         Swal.fire({
-            title: "Error",
-            text: "Fill the fields first",
-            icon: "error",
+            title: "Invalid First Name",
+            text: "First name must be 3–30 letters only",
+            icon: "error"
         });
         return;
-    } else if (customers_db.some(customer => customer.customer_id === customer_id)) {
+    }
+
+    // Validate last name
+    if (!/^[A-Za-z\s]{3,30}$/.test(lname)) {
+        $('#lname').css('border-color', 'red');
+        Swal.fire({
+            title: "Invalid Last Name",
+            text: "Last name must be 3–30 letters only",
+            icon: "error"
+        });
+        return;
+    }
+
+    // Validate contact number
+    // if (!/^\+94\d{9}$/.test(contact)) {
+    //     $('#contact').css('border-color', 'red');
+    //     Swal.fire("Invalid Contact", "Use +94 format (e.g., +94701234567)", "error");
+    //     return;
+    // }
+
+    // Check empty fields
+    if (!customer_id || !fname || !lname || !contact || !address) {
+        Swal.fire({
+            title: "Error",
+            text: "Fill in all the fields!",
+            icon: "error"
+        });
+        return;
+    }
+
+    // Check for duplicate ID
+    if (customers_db.some(customer => customer.customer_id === customer_id)) {
         Swal.fire({
             title: "Error",
             text: "Customer ID already exists!",
-            icon: "error",
+            icon: "error"
         });
         return;
-    } else {
-        let customer_data = new CustomerModel(customer_id, fname, lname, contact, address);
-
-        // push(), pop(), shift(), unshift()
-        customers_db.push(customer_data);
-        console.log(customers_db);
-
-        currentId++; // Increment the ID for next time
-
-        loadCustomers();
-        updateCustomerCount();
-        loadCustomerIDSelection();
-
-        Swal.fire({
-            title: "Success!",
-            text: "Customer Added Successfully!",
-            icon: "success"
-        });
-        clear();
     }
 
+    // Save customer
+    let customer_data = new CustomerModel(customer_id, fname, lname, contact, address);
+    customers_db.push(customer_data);
+    console.log(customers_db);
+
+    currentId++;
+
+    loadCustomers();
+    updateCustomerCount();
+    loadCustomerIDSelection();
+
+    Swal.fire({
+        title: "Success!",
+        text: "Customer Added Successfully!",
+        icon: "success"
+    });
+    clear();
 });
+
 
 // update customer
 $('#customer_update').on('click', function () {
@@ -163,11 +198,44 @@ $('#customer_update').on('click', function () {
     let address = $('#address').val();
     console.log(`customer_id: ${customer_id}, fname: ${fname}, lname: ${lname}, contact: ${contact}, address: ${address}`);
 
-    if (customer_id === '' || fname === '' || lname === '' || contact === '' || address === '') {
+    // Reset styles
+    $('#fname, #lname, #contact').css('border-color', '');
+
+    // Validate first name
+    if (!/^[A-Za-z\s]{3,30}$/.test(fname)) {
+        $('#fname').css('border-color', 'red');
+        Swal.fire({
+            title: "Invalid First Name",
+            text: "First name must be 3–30 letters only",
+            icon: "error"
+        });
+        return;
+    }
+
+    // Validate last name
+    if (!/^[A-Za-z\s]{3,30}$/.test(lname)) {
+        $('#lname').css('border-color', 'red');
+        Swal.fire({
+            title: "Invalid Last Name",
+            text: "Last name must be 3–30 letters only",
+            icon: "error"
+        });
+        return;
+    }
+
+    // Validate contact number
+    // if (!/^\+94\d{9}$/.test(contact)) {
+    //     $('#contact').css('border-color', 'red');
+    //     Swal.fire("Invalid Contact", "Use +94 format (e.g., +94701234567)", "error");
+    //     return;
+    // }
+
+    // Check empty fields
+    if (!customer_id || !fname || !lname || !contact || !address) {
         Swal.fire({
             title: "Error",
-            text: "Fill the fields first",
-            icon: "error",
+            text: "Fill in all the fields!",
+            icon: "error"
         });
         return;
     }
@@ -232,6 +300,11 @@ $('#customer_delete').on('click', function () {
 
     // Delete the existing customer
     customers_db.splice(index, 1);
+
+    // Decrease the currentId if greater than 1
+        if (currentId > 1) {
+            currentId--;
+        }
 
     loadCustomers();
     updateCustomerCount();

@@ -109,7 +109,7 @@ $('#btnAddToCartItem').on('click', function () {
 
     if (existingIndex !== -1) {
         // Update existing item quantity and total
-        cartItems[existingIndex].qty += orderQty;
+        cartItems[existingIndex].qty = orderQty;
         cartItems[existingIndex].total = cartItems[existingIndex].qty * price;
     } else {
         // Add new item
