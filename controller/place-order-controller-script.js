@@ -17,7 +17,6 @@ $(document).ready(function () {
 });
 
 function clear() {
-    $('#order-date').val('');
     $('#order-customer-id').val('');
     $('#order-customer-name').val('');
     $('#order-customer-contact').val('');
