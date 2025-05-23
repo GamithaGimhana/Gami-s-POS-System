@@ -193,6 +193,10 @@ body {
     width: 100%;
 }
 
+tr.selected {
+    background-color: #cce5ff; /* Light blue */
+}
+
 #customer-sec, #item-sec, #order-sec, #place-order-sec {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(4px);

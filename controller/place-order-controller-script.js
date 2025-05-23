@@ -158,10 +158,22 @@ $('#btnRemoveItem').on('click', function () {
         return;
     }
 
-    let index = selectedRow.index();
-    cartItems.splice(index, 1);
-    selectedRow.remove();
-    updateCartSummary();
+    // Show a confirmation dialog before deleting
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you really want to remove this item from cart?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, remove it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let index = selectedRow.index();
+            cartItems.splice(index, 1);
+            selectedRow.remove();
+            updateCartSummary();
+        }
+    });
 });
 
 function updateCartSummary() {

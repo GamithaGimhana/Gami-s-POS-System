@@ -240,32 +240,44 @@ $('#customer_update').on('click', function () {
         return;
     }
 
-    // Find index of existing customer by ID
-    let index = customers_db.findIndex(customer => customer.customer_id === customer_id);
-
-    if (index === -1) {
-        Swal.fire({
-            title: "Error",
-            text: "Customer not found to update",
-            icon: "error"
-        });
-        return;
-    }
-
-    // Update the existing customer
-    customers_db[index] = new CustomerModel(customer_id, fname, lname, contact, address);
-
-    loadCustomers();
-    updateCustomerCount();
-    loadCustomerIDSelection();
-
+    // Show a confirmation dialog before updating
     Swal.fire({
-        title: "Updated!",
-        text: "Customer Updated Successfully!",
-        icon: "success"
-    });
+        title: 'Are you sure?',
+        text: "Do you really want to update this customer?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, update it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Find index of existing customer by ID
+            let index = customers_db.findIndex(customer => customer.customer_id === customer_id);
 
-    clear();
+            if (index === -1) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Customer not found to update",
+                    icon: "error"
+                });
+                return;
+            }
+
+            // Update the existing customer
+            customers_db[index] = new CustomerModel(customer_id, fname, lname, contact, address);
+
+            loadCustomers();
+            updateCustomerCount();
+            loadCustomerIDSelection();
+
+            Swal.fire({
+                title: "Updated!",
+                text: "Customer Updated Successfully!",
+                icon: "success"
+            });
+
+            clear();
+        }
+    });
 });
 
 // delete customer
@@ -286,37 +298,49 @@ $('#customer_delete').on('click', function () {
         return;
     }
 
-    // Find index of existing customer by ID
-    let index = customers_db.findIndex(customer => customer.customer_id === customer_id);
-
-    if (index === -1) {
-        Swal.fire({
-            title: "Error",
-            text: "Customer not found to delete",
-            icon: "error"
-        });
-        return;
-    }
-
-    // Delete the existing customer
-    customers_db.splice(index, 1);
-
-    // Decrease the currentId if greater than 1
-        if (currentId > 1) {
-            currentId--;
-        }
-
-    loadCustomers();
-    updateCustomerCount();
-    loadCustomerIDSelection();
-
+    // Show a confirmation dialog before deleting
     Swal.fire({
-        title: "Deleted!",
-        text: "Customer Deleted Successfully!",
-        icon: "success"
-    });
+        title: 'Are you sure?',
+        text: "Do you really want to delete this customer?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Find index of existing customer by ID
+            let index = customers_db.findIndex(customer => customer.customer_id === customer_id);
 
-    clear();
+            if (index === -1) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Customer not found to delete",
+                    icon: "error"
+                });
+                return;
+            }
+
+            // Delete the existing customer
+            customers_db.splice(index, 1);
+
+            // Decrease the currentId if greater than 1
+            if (currentId > 1) {
+                currentId--;
+            }
+
+            loadCustomers();
+            updateCustomerCount();
+            loadCustomerIDSelection();
+
+            Swal.fire({
+                title: "Deleted!",
+                text: "Customer Deleted Successfully!",
+                icon: "success"
+            });
+
+            clear();
+        }
+    });
 });
 
 export function loadCustomerIDSelection() {

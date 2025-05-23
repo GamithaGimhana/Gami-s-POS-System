@@ -170,32 +170,44 @@ $('#item_update').on('click', function () {
         return;
     }
 
-    // Find index of existing item by ID
-    let index = items_db.findIndex(item => item.item_id === item_id);
-
-    if (index === -1) {
-        Swal.fire({
-            title: "Error",
-            text: "Item not found to update",
-            icon: "error"
-        });
-        return;
-    }
-
-    // Update the existing item
-    items_db[index] = new ItemModel(item_id, description, price, qty);
-
-    loadItems();
-    updateItemCount();
-    loadItemIDSelection();
-
+    // Show a confirmation dialog before updating
     Swal.fire({
-        title: "Updated!",
-        text: "Item Updated Successfully!",
-        icon: "success"
-    });
+        title: 'Are you sure?',
+        text: "Do you really want to update this item?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, update it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Find index of existing item by ID
+            let index = items_db.findIndex(item => item.item_id === item_id);
 
-    clear();
+            if (index === -1) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Item not found to update",
+                    icon: "error"
+                });
+                return;
+            }
+
+            // Update the existing item
+            items_db[index] = new ItemModel(item_id, description, price, qty);
+
+            loadItems();
+            updateItemCount();
+            loadItemIDSelection();
+
+            Swal.fire({
+                title: "Updated!",
+                text: "Item Updated Successfully!",
+                icon: "success"
+            });
+
+            clear();
+        }
+    });
 });
 
 // delete item
@@ -215,37 +227,49 @@ $('#item_delete').on('click', function () {
         return;
     }
 
-    // Find index of existing item by ID
-    let index = items_db.findIndex(item => item.item_id === item_id);
-
-    if (index === -1) {
-        Swal.fire({
-            title: "Error",
-            text: "Item not found to delete",
-            icon: "error"
-        });
-        return;
-    }
-
-    // Delete the existing item
-    items_db.splice(index, 1);
-
-    // Decrease the currentId if greater than 1
-    if (currentId > 1) {
-        currentId--;
-    }
-
-    loadItems();
-    updateItemCount();
-    loadItemIDSelection();
-
+    // Show a confirmation dialog before deleting
     Swal.fire({
-        title: "Deleted!",
-        text: "Item Deleted Successfully!",
-        icon: "success"
-    });
+        title: 'Are you sure?',
+        text: "Do you really want to delete this item?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Find index of existing item by ID
+            let index = items_db.findIndex(item => item.item_id === item_id);
 
-    clear();
+            if (index === -1) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Item not found to delete",
+                    icon: "error"
+                });
+                return;
+            }
+
+            // Delete the existing item
+            items_db.splice(index, 1);
+
+            // Decrease the currentId if greater than 1
+            if (currentId > 1) {
+                currentId--;
+            }
+
+            loadItems();
+            updateItemCount();
+            loadItemIDSelection();
+
+            Swal.fire({
+                title: "Deleted!",
+                text: "Item Deleted Successfully!",
+                icon: "success"
+            });
+
+            clear();
+        }
+    });
 });
 
 export function loadItemIDSelection() {
